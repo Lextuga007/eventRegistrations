@@ -24,7 +24,6 @@
 #' @return Dataframe
 #' @export
 #'
-#' @examples
 filter_data <- function(data,
                         tickets,
                         remove_dups = TRUE,
@@ -86,6 +85,10 @@ filter_data <- function(data,
         ) ~ "Midlands and Lancashire CSU",
         .default = company_cleaned
       ))
+  }
+
+  if (mlcsu == FALSE) {
+    df
   }
 
   df

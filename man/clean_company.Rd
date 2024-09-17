@@ -9,6 +9,9 @@ clean_company(data)
 \arguments{
 \item{data}{}
 }
+\value{
+dataframe
+}
 \description{
 Because the company name is a free text field and there is often
 no one standard way to writing Public Sector names, this function cleans the

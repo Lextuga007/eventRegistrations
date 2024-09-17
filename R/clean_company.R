@@ -6,11 +6,12 @@
 #' `company_cleaned`. Corrections are based on data from HACA 2024 Conference.
 #' @param data
 #'
-#' @return
+#' @return dataframe
 #' @export
 #'
 clean_company <- function(data) {
   data |>
+    janitor::clean_names() |>
     dplyr::mutate(company_cleaned = dplyr::case_when(company == "BNSSG I" ~ "BNSSG ICB",
       company == "B" ~ "NHS Birmingham and Solihull ICB",
       company %in% c(
@@ -23,9 +24,9 @@ clean_company <- function(data) {
         "AGEM", "AGEMCSU", "NHS Arden & GEM", "AGEM CSU", "NHS  AGEM CSU",
         "Arden and GEM CSU"
       ) ~ "NHS Arden & GEM CSU",
-      str_detect(company, pattern = "Health and Social Care") ~ "DHSC",
+      stringr::str_detect(company, pattern = "Health and Social Care") ~ "DHSC",
       company == "Civil service" ~ "DHSC",
-      str_detect(company, pattern = "trategy") ~ "The Strategy Unit",
+      stringr::str_detect(company, pattern = "trategy") ~ "The Strategy Unit",
       company == "SU" ~ "The Strategy Unit",
       company %in% c("NHS South, Central and West", "NHS South Central and West", "NHS SCW CSU", "NHS SCW") ~ "NHS South, Central and West CSU",
       company %in% c("NHS lothian", "NHS Lothian") ~ "NHS Lothian - Scotland",
@@ -41,29 +42,29 @@ clean_company <- function(data) {
         "Midlands and Lancashire Commissioning Support Unit",
         "Midlands & Lancashire Commissioning Support Unit"
       ) ~ "Midlands and Lancashire CSU",
-      str_detect(company, pattern = "Shropshire") ~ "NHS Shropshire, Telford and Wrekin ICB",
+      stringr::str_detect(company, pattern = "Shropshire") ~ "NHS Shropshire, Telford and Wrekin ICB",
       company == "STW ICB" ~ "NHS Shropshire, Telford and Wrekin ICB",
       # companies with single corrections
       company == "Northern Care Alliance" ~ "Northern Care Alliance NHS Foundation Trust",
       company == "DHSC - OHID" ~ "DHSC",
       company == "NDRS" ~ "National Disease Registration Service",
-      str_detect(company, pattern = "Countess") ~ "Countess of Chester NHS FT",
-      str_detect(company, pattern = "Epsom") ~ "Epsom & St Helier University Hospitals NHS Trust",
-      str_detect(company, pattern = "Health Innovation Network") ~ "Health Innovation Network",
-      str_detect(company, pattern = "Blood") ~ "NHS Blood and Transplant",
-      str_detect(company, pattern = "Walsall Coun") ~ "Walsall Council",
-      str_detect(company, pattern = "University of Exeter") ~ "University of Exeter",
-      str_detect(company, pattern = "Princess") ~ "The Princess Alexandra Hospital NHS Trust",
-      str_detect(company, pattern = "Health Economics Unit") ~ "Health Economics Unit",
-      str_detect(company, pattern = "Health Foundation") ~ "The Health Foundation",
-      str_detect(company, pattern = "Christie") ~ "The Christie NHS Foundation Trust",
-      str_detect(company, pattern = "Public Health Agency") ~ "Public Health Agency Northern Ireland",
-      str_detect(company, pattern = "Nottingham University") ~ "Nottingham University Hospitals NHS FT",
-      str_detect(company, pattern = "Suffolk and North East Essex") ~ "Suffolk and North East Essex ICB",
-      str_detect(company, pattern = "Lincolnshire") ~ "NHS Lincolnshire ICB",
-      str_detect(company, pattern = "Nottshc") ~ "Nottinghamshire Healthcare NHS Foundation Trust",
-      str_detect(company, pattern = "PHA") ~ "Public Health Agency Northern Ireland",
-      str_detect(company, pattern = "Public Health Agency") ~ "Public Health Agency Northern Ireland",
+      stringr::str_detect(company, pattern = "Countess") ~ "Countess of Chester NHS FT",
+      stringr::str_detect(company, pattern = "Epsom") ~ "Epsom & St Helier University Hospitals NHS Trust",
+      stringr::str_detect(company, pattern = "Health Innovation Network") ~ "Health Innovation Network",
+      stringr::str_detect(company, pattern = "Blood") ~ "NHS Blood and Transplant",
+      stringr::str_detect(company, pattern = "Walsall Coun") ~ "Walsall Council",
+      stringr::str_detect(company, pattern = "University of Exeter") ~ "University of Exeter",
+      stringr::str_detect(company, pattern = "Princess") ~ "The Princess Alexandra Hospital NHS Trust",
+      stringr::str_detect(company, pattern = "Health Economics Unit") ~ "Health Economics Unit",
+      stringr::str_detect(company, pattern = "Health Foundation") ~ "The Health Foundation",
+      stringr::str_detect(company, pattern = "Christie") ~ "The Christie NHS Foundation Trust",
+      stringr::str_detect(company, pattern = "Public Health Agency") ~ "Public Health Agency Northern Ireland",
+      stringr::str_detect(company, pattern = "Nottingham University") ~ "Nottingham University Hospitals NHS FT",
+      stringr::str_detect(company, pattern = "Suffolk and North East Essex") ~ "Suffolk and North East Essex ICB",
+      stringr::str_detect(company, pattern = "Lincolnshire") ~ "NHS Lincolnshire ICB",
+      stringr::str_detect(company, pattern = "Nottshc") ~ "Nottinghamshire Healthcare NHS Foundation Trust",
+      stringr::str_detect(company, pattern = "PHA") ~ "Public Health Agency Northern Ireland",
+      stringr::str_detect(company, pattern = "Public Health Agency") ~ "Public Health Agency Northern Ireland",
       company == "Southern Health & Social Care Trust" ~ "Public Health Agency Northern Ireland",
       company == "NHS STW" ~ "NHS Shropshire, Telford and Wrekin ICB",
       company == "Gloucestershire Integrated Care Board" ~ "Gloucestershire ICB",
