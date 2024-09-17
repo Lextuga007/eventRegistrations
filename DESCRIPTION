@@ -1,0 +1,14 @@
+Package: eventRegistrations
+Type: Package
+Title: Cleaning data from Eventbrite registration extracts
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <zoe.turner3@nhs.net>
+Description: Functions used to clean and analyse Eventbrite registration data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    stringr
